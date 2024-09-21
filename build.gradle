@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'com.aston'
+version '1.0-SNAPSHOT'
+apply from: 'version.gradle'
+
+repositories {
+    mavenCentral()
+}
+
+war {
+    archiveFileName = 'ROOT.war'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    compileOnly "jakarta.servlet:jakarta.servlet-api:${versions.servlet}"
+    implementation "org.springframework:spring-webmvc:${versions.spring}"
+
+    implementation "org.springframework.data:spring-data-jpa:${versions.jpa}"
+    implementation "org.hibernate.orm:hibernate-core:${versions.hibernate}"
+    runtimeOnly "org.postgresql:postgresql:${versions.psql}"
+    implementation "org.liquibase:liquibase-core:${versions.liquibase}"
+
+    compileOnly "org.projectlombok:lombok:${versions.lombok}"
+    annotationProcessor "org.projectlombok:lombok:${versions.lombok}"
+    testCompileOnly "org.projectlombok:lombok:${versions.lombok}"
+    testAnnotationProcessor "org.projectlombok:lombok:${versions.lombok}"
+
+    implementation 'org.slf4j:slf4j-reload4j:2.0.16'
+
+    testImplementation "org.testcontainers:testcontainers:${versions.testcontainers}"
+    testImplementation "org.testcontainers:junit-jupiter:${versions.testcontainers}"
+    testImplementation "org.testcontainers:postgresql:${versions.testcontainers}"
+
+    testImplementation "org.springframework:spring-test:${versions.spring}"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${versions.junit}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${versions.junit}"
+}
+
+test {
+    useJUnitPlatform()
+}

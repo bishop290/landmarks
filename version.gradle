@@ -1,0 +1,13 @@
+ext {
+    versions = [
+            'spring': '6.1.13',
+            'jpa': '3.3.4',
+            'hibernate': '6.6.1.Final',
+            'servlet': '6.1.0',
+            'psql': '42.7.3',
+            'junit': '5.11.0',
+            'testcontainers': '1.20.1',
+            'lombok': '1.18.34',
+            'liquibase': '4.29.2'
+    ]
+}
