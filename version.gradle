@@ -5,6 +5,7 @@ ext {
             'hibernate': '6.6.1.Final',
             'servlet': '6.1.0',
             'psql': '42.7.3',
+            'logback': '1.5.8',
             'junit': '5.11.0',
             'testcontainers': '1.20.1',
             'lombok': '1.18.34',

@@ -29,6 +29,7 @@ class LocalityRepositoryTest extends TestContainer {
         String city = "Москва";
         Integer population = 200000;
         Boolean metro = true;
+
         Locality locality = Locality.builder()
                 .name(city)
                 .populationSize(population)

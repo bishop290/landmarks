@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "locality")
-public class Locality {
+@Table(name = "service")
+public class Service {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,9 +20,6 @@ public class Locality {
     @Column(name = "name", length = 100)
     private String name;
 
-    @Column(name = "population_size")
-    private Integer populationSize;
-
-    @Column(name = "metro")
-    private Boolean metro;
+    @Column(name = "description", length = 200)
+    private String description;
 }
