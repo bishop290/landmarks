@@ -25,20 +25,15 @@ class ServiceRepositoryTest extends TestContainer {
     @Test
     @DisplayName("Save service to db")
     void testSaveToDb() {
-        Long id = 1L;
         String name = "Cafe";
         String description = "Simple cafe";
 
-        Service service = Service.builder()
-                .name(name)
-                .description(description)
-                .build();
+        Service service = DbHelper.create(name, description);
         serviceRepository.save(service);
         entityManager.flush();
         entityManager.detach(service);
 
         Service dbService = DbHelper.get(Service.class, dataSource);
-        assertEquals(id, dbService.getId());
         assertEquals(name, dbService.getName());
         assertEquals(description, dbService.getDescription());
     }

@@ -1,10 +1,10 @@
 package com.aston.landmarks.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "service")
+@ToString(exclude = "landmarks")
+@EqualsAndHashCode(exclude = "landmarks")
 public class Service {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,4 +24,8 @@ public class Service {
 
     @Column(name = "description", length = 200)
     private String description;
+
+    @Builder.Default
+    @OneToMany(mappedBy = "service")
+    private List<LandmarkService> landmarks = new ArrayList<>();
 }

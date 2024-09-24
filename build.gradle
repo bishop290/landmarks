@@ -7,6 +7,10 @@ group 'com.aston'
 version '1.0-SNAPSHOT'
 apply from: 'version.gradle'
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+}
+
 repositories {
     mavenCentral()
 }
@@ -21,12 +25,20 @@ tasks.withType(JavaCompile) {
 
 dependencies {
     compileOnly "jakarta.servlet:jakarta.servlet-api:${versions.servlet}"
+    testImplementation "jakarta.servlet:jakarta.servlet-api:${versions.servlet}"
+
     implementation "org.springframework:spring-webmvc:${versions.spring}"
 
     implementation "org.springframework.data:spring-data-jpa:${versions.jpa}"
     implementation "org.hibernate.orm:hibernate-core:${versions.hibernate}"
     runtimeOnly "org.postgresql:postgresql:${versions.psql}"
     implementation "org.liquibase:liquibase-core:${versions.liquibase}"
+
+    implementation "org.mapstruct:mapstruct:${versions.mapstruct}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${versions.mapstruct}"
+    testAnnotationProcessor "org.mapstruct:mapstruct-processor:${versions.mapstruct}"
+
+    implementation "org.hibernate.validator:hibernate-validator:${versions.validator}"
 
     compileOnly "org.projectlombok:lombok:${versions.lombok}"
     annotationProcessor "org.projectlombok:lombok:${versions.lombok}"
@@ -36,6 +48,9 @@ dependencies {
     implementation "ch.qos.logback:logback-core:${versions.logback}"
     testImplementation "ch.qos.logback:logback-classic:${versions.logback}"
 
+    testImplementation "com.fasterxml.jackson.core:jackson-core:${versions.jackson}"
+    testImplementation "com.fasterxml.jackson.core:jackson-databind:${versions.jackson}"
+
     testImplementation "org.testcontainers:testcontainers:${versions.testcontainers}"
     testImplementation "org.testcontainers:junit-jupiter:${versions.testcontainers}"
     testImplementation "org.testcontainers:postgresql:${versions.testcontainers}"
@@ -43,6 +58,8 @@ dependencies {
     testImplementation "org.springframework:spring-test:${versions.spring}"
     testImplementation "org.junit.jupiter:junit-jupiter-api:${versions.junit}"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${versions.junit}"
+
+    testImplementation "com.jayway.jsonpath:json-path:${versions.jsonpath}"
 }
 
 test {

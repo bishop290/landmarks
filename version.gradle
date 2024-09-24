@@ -6,9 +6,13 @@ ext {
             'servlet': '6.1.0',
             'psql': '42.7.3',
             'logback': '1.5.8',
+            'mapstruct': '1.5.3.Final',
             'junit': '5.11.0',
+            'jsonpath': '2.9.0',
             'testcontainers': '1.20.1',
             'lombok': '1.18.34',
-            'liquibase': '4.29.2'
+            'liquibase': '4.29.2',
+            'jackson': '2.16.2',
+            'validator': '8.0.1.Final'
     ]
 }

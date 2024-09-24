@@ -1,13 +1,12 @@
 package com.aston.landmarks.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.ColumnTransformer;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -15,6 +14,8 @@ import java.sql.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "landmark")
+@ToString(exclude = "services")
+@EqualsAndHashCode(exclude = "services")
 public class Landmark {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,4 +38,8 @@ public class Landmark {
     @ManyToOne(optional = false)
     @JoinColumn(name = "locality_id")
     private Locality locality;
+
+    @Builder.Default
+    @OneToMany(mappedBy = "landmark")
+    private List<LandmarkService> services = new ArrayList<>();
 }

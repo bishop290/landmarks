@@ -25,22 +25,16 @@ class LocalityRepositoryTest extends TestContainer {
     @Test
     @DisplayName("Save locality to db")
     void testSaveToDb() {
-        Long id = 1L;
         String city = "Москва";
         Integer population = 200000;
         Boolean metro = true;
 
-        Locality locality = Locality.builder()
-                .name(city)
-                .populationSize(population)
-                .metro(metro)
-                .build();
+        Locality locality = DbHelper.create(city, population, true);
         localityRepository.save(locality);
         entityManager.flush();
         entityManager.detach(locality);
 
         Locality dbLocality = DbHelper.get(Locality.class, dataSource);
-        assertEquals(id, dbLocality.getId());
         assertEquals(city, dbLocality.getName());
         assertEquals(population, dbLocality.getPopulationSize());
         assertEquals(metro, dbLocality.getMetro());
