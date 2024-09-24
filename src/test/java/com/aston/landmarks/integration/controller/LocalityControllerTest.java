@@ -2,7 +2,7 @@ package com.aston.landmarks.integration.controller;
 
 import com.aston.landmarks.aspect.ExceptionAdvice;
 import com.aston.landmarks.controller.LocalityController;
-import com.aston.landmarks.dtos.localities.LocalityDto;
+import com.aston.landmarks.dtos.localities.LocalityCreateDto;
 import com.aston.landmarks.dtos.localities.LocalityUpdateDto;
 import com.aston.landmarks.integration.DbHelper;
 import com.aston.landmarks.integration.IntegrationTest;
@@ -54,7 +54,7 @@ class LocalityControllerTest extends TestContainer {
         int population = 200;
         Boolean metro = true;
 
-        LocalityDto localityDto = new LocalityDto(name, population, metro);
+        LocalityCreateDto localityDto = new LocalityCreateDto(name, population, metro);
         mockMvc.perform(MockMvcHelper.postJson("/localities", localityDto))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.status").value("true"))
@@ -68,7 +68,7 @@ class LocalityControllerTest extends TestContainer {
         int population = 200;
         Boolean metro = true;
 
-        LocalityDto localityDto = new LocalityDto(name, population, metro);
+        LocalityCreateDto localityDto = new LocalityCreateDto(name, population, metro);
         mockMvc.perform(MockMvcHelper.postJson("/localities", localityDto))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.status").value("false"));

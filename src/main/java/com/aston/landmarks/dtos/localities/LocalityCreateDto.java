@@ -6,8 +6,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
-public record LocalityDto(
-
+public record LocalityCreateDto(
         @NotEmpty(message = "Locality field \"name\" must be filled in")
         @Length(min = 1, max = 100, message = "Locality field \"name\" must be correct length")
         String name,

@@ -25,7 +25,7 @@ create table landmark (
     name varchar(100),
     date_created date,
     description varchar(200),
-    attraction type_of_attraction,
+    attraction type_of_attraction not null,
     locality_id bigint references locality (id) not null);
 
 --changeset Grigorii_Kuznetsov:5

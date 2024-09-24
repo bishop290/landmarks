@@ -1,7 +1,7 @@
 package com.aston.landmarks.controller;
 
 import com.aston.landmarks.dtos.DefaultResponse;
-import com.aston.landmarks.dtos.localities.LocalityDto;
+import com.aston.landmarks.dtos.localities.LocalityCreateDto;
 import com.aston.landmarks.dtos.localities.LocalityUpdateDto;
 import com.aston.landmarks.service.LocalityService;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ public class LocalityControllerImpl implements LocalityController {
     private final LocalityService localityService;
 
     @Override
-    public ResponseEntity<DefaultResponse> add(@Validated LocalityDto locality) {
+    public ResponseEntity<DefaultResponse> add(@Validated LocalityCreateDto locality) {
         return new ResponseEntity<>(localityService.add(locality), HttpStatus.CREATED);
     }
 

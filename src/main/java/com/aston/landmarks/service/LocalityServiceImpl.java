@@ -1,10 +1,10 @@
 package com.aston.landmarks.service;
 
-import com.aston.landmarks.dtos.localities.LocalityDto;
 import com.aston.landmarks.dtos.DefaultResponse;
+import com.aston.landmarks.dtos.localities.LocalityCreateDto;
 import com.aston.landmarks.dtos.localities.LocalityUpdateDto;
 import com.aston.landmarks.exceptions.locality.LocalityNotFoundException;
-import com.aston.landmarks.mappers.LocalityMapper;
+import com.aston.landmarks.mappers.LocalityCreateDtoMapper;
 import com.aston.landmarks.model.Locality;
 import com.aston.landmarks.repository.LocalityRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,11 +19,11 @@ public class LocalityServiceImpl implements LocalityService {
     private static final String UPDATE_MESSAGE = "Locality update successful";
 
     private final LocalityRepository localityRepository;
-    private final LocalityMapper localityMapper;
+    private final LocalityCreateDtoMapper localityCreateDtoMapper;
 
     @Override
-    public DefaultResponse add(LocalityDto localityDto) {
-        Locality locality = localityMapper.dtoToEntity(localityDto);
+    public DefaultResponse add(LocalityCreateDto localityDto) {
+        Locality locality = localityCreateDtoMapper.dtoToEntity(localityDto);
         localityRepository.save(locality);
         return new DefaultResponse(true, ADD_MESSAGE);
     }
