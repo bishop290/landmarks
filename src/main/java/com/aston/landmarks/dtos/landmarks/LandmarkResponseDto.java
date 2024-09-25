@@ -2,17 +2,22 @@ package com.aston.landmarks.dtos.landmarks;
 
 import com.aston.landmarks.dtos.localities.LocalityResponseDto;
 import com.aston.landmarks.dtos.services.ServiceResponseDto;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Setter;
 
 import java.sql.Date;
 import java.util.List;
 
-public record LandmarkResponseDto(
-        Long id,
-        String name,
-        String description,
-        Date dateCreated,
-        String attraction,
-        LocalityResponseDto locality,
-        List<ServiceResponseDto> services
-) {
+@Data
+@AllArgsConstructor
+public class LandmarkResponseDto {
+    private final Long id;
+    private final String name;
+    private final String description;
+    private final Date dateCreated;
+    private final String attraction;
+    private final LocalityResponseDto locality;
+    @Setter
+    private List<ServiceResponseDto> services;
 }

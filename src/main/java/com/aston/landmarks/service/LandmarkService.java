@@ -1,9 +1,7 @@
 package com.aston.landmarks.service;
 
 import com.aston.landmarks.dtos.DefaultResponse;
-import com.aston.landmarks.dtos.landmarks.LandmarkCreateDto;
-import com.aston.landmarks.dtos.landmarks.LandmarkResponseDto;
-import com.aston.landmarks.dtos.landmarks.LandmarkUpdateDto;
+import com.aston.landmarks.dtos.landmarks.*;
 
 import java.util.List;
 
@@ -13,7 +11,9 @@ public interface LandmarkService {
 
     DefaultResponse update(Long id, LandmarkUpdateDto landmark);
 
-    List<LandmarkResponseDto> get();
-
     DefaultResponse delete(Long id);
+
+    List<LandmarkResponseDto> filterByLocality(FilterByLocalityDto filter);
+
+    List<LandmarkResponseDto> filterByTypeSortByName(FilterByTypeSortDto filter);
 }

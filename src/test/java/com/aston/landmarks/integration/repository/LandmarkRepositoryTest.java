@@ -1,5 +1,6 @@
 package com.aston.landmarks.integration.repository;
 
+import com.aston.landmarks.ObjectBuilder;
 import com.aston.landmarks.integration.DbHelper;
 import com.aston.landmarks.integration.IntegrationTest;
 import com.aston.landmarks.integration.TestContainer;
@@ -42,11 +43,11 @@ class LandmarkRepositoryTest extends TestContainer {
         String description = "Simple castle";
         long date = 1727014029841L;
 
-        Locality locality = DbHelper.create(nameLocality, population, true);
+        Locality locality = ObjectBuilder.create(nameLocality, population, true);
         localityRepository.save(locality);
         entityManager.flush();
 
-        Landmark landmark = DbHelper.create(
+        Landmark landmark = ObjectBuilder.create(
                 nameLandmark, description, new Date(date), TypeOfAttraction.CASTLE, locality);
         landmarkRepository.save(landmark);
         entityManager.flush();
@@ -73,19 +74,19 @@ class LandmarkRepositoryTest extends TestContainer {
         EntityManager manager = entityManagerFactory.createEntityManager();
         manager.getTransaction().begin();
 
-        Locality locality = DbHelper.create(nameLocality, population, true);
+        Locality locality = ObjectBuilder.create(nameLocality, population, true);
         localityRepository.saveAndFlush(locality);
 
-        Landmark landmark = DbHelper.create(
+        Landmark landmark = ObjectBuilder.create(
                 nameLandmark, descriptionLandmark, new Date(date), TypeOfAttraction.CASTLE, locality);
         landmarkRepository.saveAndFlush(landmark);
         Long landmarkId = landmark.getId();
 
-        Service service = DbHelper.create(nameService, descriptionService);
+        Service service = ObjectBuilder.create(nameService, descriptionService);
         serviceRepository.saveAndFlush(service);
         Long serviceId = service.getId();
 
-        LandmarkService landmarkService = DbHelper.create(landmark, service);
+        LandmarkService landmarkService = ObjectBuilder.create(landmark, service);
         landmarkServiceRepository.saveAndFlush(landmarkService);
         Long landmarkServiceId = landmarkService.getId();
         manager.getTransaction().commit();

@@ -1,5 +1,6 @@
 package com.aston.landmarks.integration.repository;
 
+import com.aston.landmarks.ObjectBuilder;
 import com.aston.landmarks.integration.DbHelper;
 import com.aston.landmarks.integration.IntegrationTest;
 import com.aston.landmarks.integration.TestContainer;
@@ -39,20 +40,20 @@ class LandmarkServiceRepositoryTest extends TestContainer {
         String descriptionLandmark = "Simple castle";
         long date = 1727014029841L;
 
-        Locality locality = DbHelper.create(nameLocality, population, true);
+        Locality locality = ObjectBuilder.create(nameLocality, population, true);
         localityRepository.save(locality);
         entityManager.flush();
 
-        Landmark landmark = DbHelper.create(
+        Landmark landmark = ObjectBuilder.create(
                 nameLandmark, descriptionLandmark, new Date(date), TypeOfAttraction.CASTLE, locality);
         landmarkRepository.save(landmark);
         entityManager.flush();
 
-        Service service = DbHelper.create(nameService, descriptionService);
+        Service service = ObjectBuilder.create(nameService, descriptionService);
         serviceRepository.save(service);
         entityManager.flush();
 
-        LandmarkService landmarkService = DbHelper.create(landmark, service);
+        LandmarkService landmarkService = ObjectBuilder.create(landmark, service);
         landmarkServiceRepository.save(landmarkService);
         entityManager.flush();
         long id = landmarkService.getId();

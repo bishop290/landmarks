@@ -1,4 +1,4 @@
-package com.aston.landmarks.mappers;
+package com.aston.landmarks.mappers.localities;
 
 import com.aston.landmarks.dtos.localities.LocalityCreateDto;
 import com.aston.landmarks.model.Locality;
@@ -8,6 +8,7 @@ import org.mapstruct.MappingConstants;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
 public interface LocalityCreateDtoMapper {
+
     @Mapping(target = "id", ignore = true)
     Locality dtoToEntity(LocalityCreateDto localityDto);
 }

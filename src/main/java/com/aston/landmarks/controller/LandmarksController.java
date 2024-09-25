@@ -1,9 +1,7 @@
 package com.aston.landmarks.controller;
 
 import com.aston.landmarks.dtos.DefaultResponse;
-import com.aston.landmarks.dtos.landmarks.LandmarkCreateDto;
-import com.aston.landmarks.dtos.landmarks.LandmarkResponseDto;
-import com.aston.landmarks.dtos.landmarks.LandmarkUpdateDto;
+import com.aston.landmarks.dtos.landmarks.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,12 +13,15 @@ public interface LandmarksController {
     @PostMapping()
     ResponseEntity<DefaultResponse> add(@RequestBody LandmarkCreateDto landmark);
 
-    @GetMapping()
-    ResponseEntity<List<LandmarkResponseDto>> landmarks();
-
     @PutMapping("/{id}")
     ResponseEntity<DefaultResponse> update(@PathVariable("id") Long id, @RequestBody LandmarkUpdateDto landmark);
 
     @DeleteMapping("/{id}")
-    ResponseEntity<DefaultResponse> delete(@PathVariable Long id);
+    ResponseEntity<DefaultResponse> delete(@PathVariable("id") Long id);
+
+    @GetMapping("/filter/locality")
+    ResponseEntity<List<LandmarkResponseDto>> filterByLocality(FilterByLocalityDto filter);
+
+    @GetMapping("/filter/type")
+    ResponseEntity<List<LandmarkResponseDto>> filterByTypeSortByName(FilterByTypeSortDto filter);
 }

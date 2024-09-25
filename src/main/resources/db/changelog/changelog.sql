@@ -34,6 +34,8 @@ create table landmark_service (
     landmark_id bigint not null references landmark (id) on delete cascade,
     service_id bigint not null references service (id) on delete cascade);
 
-
+--changeset Grigorii_Kuznetsov:6
+alter table landmark
+alter column attraction type varchar(100);
 
 

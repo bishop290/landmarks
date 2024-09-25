@@ -1,5 +1,6 @@
 package com.aston.landmarks.integration.repository;
 
+import com.aston.landmarks.ObjectBuilder;
 import com.aston.landmarks.integration.DbHelper;
 import com.aston.landmarks.integration.IntegrationTest;
 import com.aston.landmarks.integration.TestContainer;
@@ -28,7 +29,7 @@ class ServiceRepositoryTest extends TestContainer {
         String name = "Cafe";
         String description = "Simple cafe";
 
-        Service service = DbHelper.create(name, description);
+        Service service = ObjectBuilder.create(name, description);
         serviceRepository.save(service);
         entityManager.flush();
         entityManager.detach(service);

@@ -1,5 +1,6 @@
 package com.aston.landmarks.integration.repository;
 
+import com.aston.landmarks.ObjectBuilder;
 import com.aston.landmarks.integration.DbHelper;
 import com.aston.landmarks.integration.IntegrationTest;
 import com.aston.landmarks.integration.TestContainer;
@@ -29,7 +30,7 @@ class LocalityRepositoryTest extends TestContainer {
         Integer population = 200000;
         Boolean metro = true;
 
-        Locality locality = DbHelper.create(city, population, true);
+        Locality locality = ObjectBuilder.create(city, population, true);
         localityRepository.save(locality);
         entityManager.flush();
         entityManager.detach(locality);

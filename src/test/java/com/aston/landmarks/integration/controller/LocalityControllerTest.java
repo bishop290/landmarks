@@ -1,10 +1,10 @@
 package com.aston.landmarks.integration.controller;
 
+import com.aston.landmarks.ObjectBuilder;
 import com.aston.landmarks.aspect.ExceptionAdvice;
 import com.aston.landmarks.controller.LocalityController;
 import com.aston.landmarks.dtos.localities.LocalityCreateDto;
 import com.aston.landmarks.dtos.localities.LocalityUpdateDto;
-import com.aston.landmarks.integration.DbHelper;
 import com.aston.landmarks.integration.IntegrationTest;
 import com.aston.landmarks.integration.MockMvcHelper;
 import com.aston.landmarks.integration.TestContainer;
@@ -84,7 +84,7 @@ class LocalityControllerTest extends TestContainer {
 
         EntityManager manager = entityManagerFactory.createEntityManager();
         manager.getTransaction().begin();
-        Locality locality = DbHelper.create(name, population, metro);
+        Locality locality = ObjectBuilder.create(name, population, metro);
         localityRepository.save(locality);
         Long id = locality.getId();
         manager.getTransaction().commit();
@@ -108,7 +108,7 @@ class LocalityControllerTest extends TestContainer {
 
         LocalityUpdateDto localityDto = new LocalityUpdateDto(population, metro);
         mockMvc.perform(MockMvcHelper.putJson("/localities/" + id, localityDto))
-                .andExpect(status().isOk())
+                .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.status").value("false"))
                 .andExpect(jsonPath("$.message").value(message));
     }

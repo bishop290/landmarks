@@ -4,7 +4,7 @@ import com.aston.landmarks.dtos.DefaultResponse;
 import com.aston.landmarks.dtos.localities.LocalityCreateDto;
 import com.aston.landmarks.dtos.localities.LocalityUpdateDto;
 import com.aston.landmarks.exceptions.locality.LocalityNotFoundException;
-import com.aston.landmarks.mappers.LocalityCreateDtoMapper;
+import com.aston.landmarks.mappers.localities.LocalityCreateDtoMapper;
 import com.aston.landmarks.model.Locality;
 import com.aston.landmarks.repository.LocalityRepository;
 import lombok.RequiredArgsConstructor;
