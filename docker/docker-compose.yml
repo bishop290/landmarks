@@ -1,0 +1,19 @@
+services:
+  landmarks:
+    build:
+      context: "../"
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - landmarks-db
+
+  landmarks-db:
+    image: postgres:15-alpine
+    hostname: landmarks-db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=postgres

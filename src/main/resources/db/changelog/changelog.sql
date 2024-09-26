@@ -37,5 +37,6 @@ create table landmark_service (
 --changeset Grigorii_Kuznetsov:6
 alter table landmark
 alter column attraction type varchar(100);
+drop type type_of_attraction;
 
 

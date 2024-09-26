@@ -32,7 +32,6 @@ public class Landmark {
 
     @Column(name = "attraction")
     @Enumerated(EnumType.STRING)
-    @ColumnTransformer(write="?::type_of_attraction")
     private TypeOfAttraction attraction;
 
     @ManyToOne(optional = false)

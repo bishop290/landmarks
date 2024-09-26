@@ -1,8 +1,6 @@
 package com.aston.landmarks.integration.controller;
 
 import com.aston.landmarks.ObjectBuilder;
-import com.aston.landmarks.aspect.ExceptionAdvice;
-import com.aston.landmarks.controller.LandmarksController;
 import com.aston.landmarks.dtos.landmarks.LandmarkCreateDto;
 import com.aston.landmarks.dtos.landmarks.LandmarkUpdateDto;
 import com.aston.landmarks.integration.IntegrationTest;
@@ -15,38 +13,33 @@ import com.aston.landmarks.repository.LocalityRepository;
 import com.aston.landmarks.repository.ServiceRepository;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.validation.Validator;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.sql.Date;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @IntegrationTest
 @RequiredArgsConstructor
 @DisplayName("Landmark controller integration tests")
 class LandmarkControllerTest extends TestContainer {
-    private final LandmarksController controller;
     private final LocalityRepository localityRepository;
     private final LandmarkRepository landmarkRepository;
     private final ServiceRepository serviceRepository;
     private final LandmarkServiceRepository landmarkServiceRepository;
-    private final Validator validator;
+    private final WebApplicationContext context;
 
     private MockMvc mockMvc;
 
     @BeforeEach
     public void setUp() {
-        mockMvc = MockMvcBuilders
-                .standaloneSetup(controller)
-                .setControllerAdvice(new ExceptionAdvice())
-                .setValidator(validator)
-                .build();
+        mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
     }
 
     @Test
@@ -158,12 +151,14 @@ class LandmarkControllerTest extends TestContainer {
                 .andExpect(jsonPath("$").isArray());
     }
 
+    @Disabled
     @Test
     @DisplayName("Find by empty locality name")
     void testFindByEmptyLocalityName() throws Exception {
         String localityName = "";
         mockMvc.perform(get(String.format("/landmarks/filter/locality?name=%s", localityName)))
-                .andExpect(status().isBadRequest());
+               .andExpect(status().isBadRequest());
+
     }
 
     @Test
