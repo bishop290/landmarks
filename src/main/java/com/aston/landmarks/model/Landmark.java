@@ -2,7 +2,6 @@ package com.aston.landmarks.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.ColumnTransformer;
 
 import java.sql.Date;
 import java.util.ArrayList;

@@ -1,6 +1,5 @@
-package com.aston.landmarks;
+package com.aston.landmarks.config;
 
-import com.aston.landmarks.config.ApplicationConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRegistration;
 import org.springframework.web.WebApplicationInitializer;

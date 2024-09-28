@@ -12,9 +12,9 @@ import java.util.List;
 @Repository
 public interface LandmarkRepository extends JpaRepository<Landmark, Long> {
 
-    @EntityGraph(attributePaths = "services")
+    @EntityGraph(attributePaths = {"locality", "services.service"})
     List<Landmark> findByLocalityName(String name);
 
-    @EntityGraph(attributePaths = "services")
+    @EntityGraph(attributePaths = {"locality", "services.service"})
     List<Landmark> findByAttraction(TypeOfAttraction attraction, Sort sort);
 }

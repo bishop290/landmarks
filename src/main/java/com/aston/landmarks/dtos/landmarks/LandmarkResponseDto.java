@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.Setter;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Data
@@ -15,7 +16,8 @@ public class LandmarkResponseDto {
     private final Long id;
     private final String name;
     private final String description;
-    private final Date dateCreated;
+    private Date date;
+    private final LocalDate dateCreated;
     private final String attraction;
     private final LocalityResponseDto locality;
     @Setter

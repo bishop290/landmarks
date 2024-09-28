@@ -50,8 +50,10 @@ dependencies {
 
     implementation "com.fasterxml.jackson.core:jackson-core:${versions.jackson}"
     implementation "com.fasterxml.jackson.core:jackson-databind:${versions.jackson}"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${versions.jackson}"
     testImplementation "com.fasterxml.jackson.core:jackson-core:${versions.jackson}"
     testImplementation "com.fasterxml.jackson.core:jackson-databind:${versions.jackson}"
+    testImplementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${versions.jackson}"
 
     testImplementation "org.testcontainers:testcontainers:${versions.testcontainers}"
     testImplementation "org.testcontainers:junit-jupiter:${versions.testcontainers}"

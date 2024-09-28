@@ -1,4 +1,4 @@
-package com.aston.landmarks.aspect;
+package com.aston.landmarks.exceptions;
 
 import com.aston.landmarks.dtos.DefaultResponse;
 import com.aston.landmarks.exceptions.landmark.LandmarkNotFoundException;
